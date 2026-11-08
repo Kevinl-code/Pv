@@ -396,7 +396,7 @@ function burst(sp,x,y,z,o){
     });
   }
 }
-function pickCol(){return UD?pick(RED):pickCol();}
+function pickCol(){return UD?pick(RED):pick(PAL);}
 function pickType(){return pick(['peony','peony','ring','willow','crackle','crackle']);}
 
 /* ---------------- scene factory ---------------- */
@@ -435,16 +435,15 @@ function frame(ts){
   for(const st of stages){
     if(!st.visible)continue;
     st.time+=dt;
-    for(let i=st.sched.length-1;i>=0;i--){if(st.sched[i].t<=st.time){const f=st.sched[i].fn;st.sched.splice(i,1);f();}}
-    if(st.update)st.update(dt);
-    st.sparks.update(dt);if(st.bits)st.bits.update(dt);
-    st.renderer.render(st.scene,st.camera);
+    for(let i=st.sched.length-1;i>=0;i--){if(st.sched[i].t<=st.time){const f=st.sched[i].fn;st.sched.splice(i,1);try{f();}catch(err){console.error('sched',err);}}}
+    try{if(st.update)st.update(dt);}catch(err){console.error('update',err);}
+    try{st.sparks.update(dt);if(st.bits)st.bits.update(dt);st.renderer.render(st.scene,st.camera);}catch(err){console.error('render',err);}
   }
   requestAnimationFrame(frame);
 }
 requestAnimationFrame(frame);
 
 
-window.PV={$:$,rand:rand,clamp:clamp,pick:pick,reduce:reduce,Snd:Snd,Sparks:Sparks,PAL:PAL,burst:burst,pickType:pickType,makeStage:makeStage,stages:stages,
+window.PV={pickCol:pickCol,$:$,rand:rand,clamp:clamp,pick:pick,reduce:reduce,Snd:Snd,Sparks:Sparks,PAL:PAL,burst:burst,pickType:pickType,makeStage:makeStage,stages:stages,
   mobile:matchMedia('(max-width:820px)').matches||/Mobi|Android/i.test(navigator.userAgent)};
 })();

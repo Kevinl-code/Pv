@@ -1,7 +1,7 @@
 
 /* ================= CRACKER LAB ================= */
 (function(){
-const {$,rand,clamp,pick,reduce,Snd,Sparks,PAL,burst,makeStage}=PV;
+const {$,rand,clamp,pick,reduce,Snd,Sparks,PAL,burst,makeStage,pickCol}=PV;
 let inited=false;
 function init(){
   const canvas=$('#c-lab');
@@ -331,8 +331,8 @@ function init(){
     for(let i=runs.length-1;i>=0;i--){
       const r=runs[i];if(st.time<r.start)continue;
       const el=st.time-r.start;
-      if(el>=r.dur){if(r.end)r.end();runs.splice(i,1);continue;}
-      r.fn(el,dt);
+      if(el>=r.dur){runs.splice(i,1);if(r.end){try{r.end();}catch(err){console.error('end',err);}}continue;}
+      try{r.fn(el,dt);}catch(err){console.error('run',err);runs.splice(i,1);}
     }
     /* lights decay */
     fl.forEach(l=>{l.intensity*=Math.exp(-7*dt);});

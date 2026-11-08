@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Pattasu Vedikkum · DigiDiwali 2026</title>
+<meta name="description" content="A cinematic, interactive Tamil village Diwali story with an Upside Down twist. Celebrate together, care for everyone, spread happiness. Concept and direction by Kevin Lazarus.">
+<meta name="author" content="Kevin Lazarus">
+<meta name="theme-color" content="#07060c">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Cormorant+Garamond:ital,wght@1,500&family=DM+Mono:wght@400;500&family=Hind+Madurai:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="">
+<canvas id="world" aria-hidden="true"></canvas>
+<div class="fx vig"></div><div class="fx flash" id="flash"></div><div class="fx grain"></div>
+<div class="bars" aria-hidden="true"><i></i><i></i></div>
+<div id="hot"></div>
+<div class="sub" id="sub" aria-live="polite"><p id="subText"></p></div>
+
+<div id="intro" role="dialog" aria-label="Start the experience">
+  <div>
+    <p class="eyebrow">Kevin Lazarus presents</p>
+    <h1>Pattasu Vedikkum</h1>
+    <p>DigiDiwali 2026. A short film you can walk into. Sound makes it better, so use headphones if you can.</p>
+    <div class="row" style="justify-content:center">
+      <button class="btn" id="beginSound">Begin with sound</button>
+      <button class="btn ghost" id="beginSilent">Begin silently</button>
+    </div>
+  </div>
+</div>
+
+<header class="top"><div class="in">
+  <a class="brand" href="#home" aria-label="Pattasu Vedikkum home"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="12" y="13" width="8" height="16" rx="1.5" fill="#e0243f"/><rect x="12" y="18" width="8" height="3" fill="#ffc83d"/><path d="M16 13C16 9 19 8 20 5" stroke="#f2e4c4" stroke-width="1.6" fill="none" stroke-linecap="round"/><g stroke="#ffc83d" stroke-width="1.6" stroke-linecap="round"><path d="M20 5V1.5M20 5l3.5-2M20 5l4 1.5M20 5l-3.5-2"/></g></svg>Pattasu Vedikkum</a>
+  <nav class="nav" aria-label="Sections">
+    <a href="#home">Home</a><a href="#village">Village</a><a href="#upside">Upside Down</a><a href="#lab">Crackers</a><a href="#digi">DigiDiwali</a><a href="#companions">Companions</a><a href="#responsible">Responsibly</a><a href="#creator">Creator</a><a href="#finale">Finale</a>
+  </nav>
+  <div class="embers" id="embers" title="Light embers collected" aria-label="Light embers collected"><i></i><i></i><i></i><i></i><i></i></div>
+  <button class="pill" id="sndBtn" aria-pressed="false"><i></i><span id="sndTxt">Sound off</span></button>
+  <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><i></i></button>
+</div></header>
+<nav class="drawer" id="drawer" aria-label="Menu">
+  <a href="#home">Home<small>Opening</small></a><a href="#village">The Village<small>Explore</small></a><a href="#upside">The Upside Down<small>Threat</small></a><a href="#lab">Cracker Lab<small>Sounds</small></a><a href="#digi">DigiDiwali<small>Together</small></a><a href="#companions">Our Companions<small>Animals</small></a><a href="#responsible">Celebrate Responsibly<small>Care</small></a><a href="#creator">Creator<small>Kevin</small></a><a href="#finale">Finale<small>Dawn</small></a>
+</nav>
+
+<main>
+<section id="home" class="chapter" data-ch="home"><div class="in">
+  <div class="titlecard" id="titleCard">
+    <span class="tag">Concept &amp; direction · Kevin Lazarus</span>
+    <h1><span class="title1">Pattasu Vedikkum</span><span class="title2" style="display:block">DigiDiwali 2026</span><span class="title-ta" style="display:block">பட்டாசு வெடிக்கும்</span></h1>
+    <p class="lede">A village lit for Deepavali. Something opening in its sky. Walk the street, find out what the gate wants, and decide how you celebrate.</p>
+    <div class="row" style="margin-top:1.4rem"><button class="btn" id="enterBtn">Enter the village</button><button class="btn ghost" id="replayBtn">Replay opening</button></div>
+    <p class="credit">A film-like experience by <b>Kevin Lazarus</b> · Tech enthusiast · Creative thinker · Stranger Things fan</p>
+  </div>
+</div></section>
+<button class="btn ghost sm skip" id="skipBtn">Skip opening</button>
+
+<section id="village" class="chapter" data-ch="village"><div class="in">
+  <div class="glass" id="vPanel">
+    <p class="eyebrow">Chapter 1 · The village · கிராமம்</p>
+    <h3 id="vTitle">The Street</h3>
+    <p class="ta" id="vTa">தெரு</p>
+    <p id="vText">An hour earlier. Everyone is out. Light every diya you can find and see what the street does.</p>
+    <div class="chips" id="locChips" role="group" aria-label="Places in the village"></div>
+    <div class="mrow"><span>Village warmth</span><b id="warmN">0%</b></div>
+    <div class="meter"><i id="warmFill"></i></div>
+    <p class="note" id="vHint">Tap the glowing rings in the scene. Each lit diya, shared cup of tea and finished kolam raises the warmth.</p>
+  </div>
+</div></section>
+
+<section id="upside" class="chapter" data-ch="upside"><div class="in">
+  <div class="glass" id="uPanel" style="border-color:rgba(224,36,63,.5)">
+    <p class="eyebrow" style="color:#ff6a78">Chapter 2 · The Upside Down</p>
+    <h3 id="uTitle" style="color:#ff4a5a">The gate does not break doors.</h3>
+    <p id="uText">It waits where nobody is talking. It grows on loneliness, on waste, on noise without care. Drag the slider to see the same street on both sides of the gate.</p>
+    <div class="dual" style="margin-top:1rem"><span>Village</span><span>Upside Down</span></div>
+    <input class="slider" id="downSlider" type="range" min="0" max="100" value="100" aria-label="Blend between the village and the Upside Down">
+    <div class="row" style="margin-top:.9rem"><button class="btn sm" id="boltBtn">Call the lightning</button><span class="cal" id="uCount">Signs found 0 / 4</span></div>
+    <p class="note" id="uHint">Tap the red rings in the scene to read the signs. Warmth you built in the village weakens the gate.</p>
+  </div>
+</div></section>
+
+<section id="lab" class="solid" data-ch="lab"><div class="in">
+  <p class="eyebrow">The cracker lab · பட்டாசு பரிசோதனை</p>
+  <h2 class="h2">Pick one.<br>Light it. Listen.</h2>
+  <p class="lede">Crackers are not the villain here. Enjoy them if you like them, with legal products, from a safe distance, away from animals, babies and patients. Seven crackers, seven voices, all synthesized live in your browser.</p>
+  <div class="labgrid">
+    <div class="labstage"><canvas id="c-lab" aria-label="3D cracker stage"></canvas><div class="lab-hint">Drag to look around · tap a cracker to pick it</div></div>
+    <aside class="panel" aria-live="polite">
+      <p class="p-ta" id="pTa">கம்பி மத்தாப்பு</p><h3 id="pEn">Sparkler</h3>
+      <p class="p-sound" id="pSound">A dry, steady sizzle. Hundreds of tiny crackles every second, bright and high, like rain on a tin roof.</p>
+      <dl class="meters">
+        <div><dt>Loudness</dt><dd><div class="meter"><i id="mLoud" style="width:22%"></i></div></dd></div>
+        <div><dt>Burn time</dt><dd class="val" id="mBurn">6 s</dd></div>
+        <div><dt>Kind</dt><dd class="val" id="mKind">Hand-held</dd></div>
+      </dl>
+      <button class="btn fuse-btn" id="fuse">Light the fuse</button>
+    </aside>
+  </div>
+  <div class="cchips" id="chips" role="tablist" aria-label="Choose a cracker"></div>
+</div></section>
+
+<section id="digi" class="solid" data-ch="digi"><div class="in">
+  <p class="eyebrow">DigiDiwali · டிஜி தீபாவளி</p>
+  <h2 class="h2">Together is the<br>whole festival.</h2>
+  <p class="lede">The gate shrinks every time someone chooses people over spending. Try these four small things.</p>
+  <div class="grid g2">
+    <article class="card" id="feast"><span class="done-tag">Ember lit</span>
+      <h3>The shared table</h3><p>Add four homemade dishes to one banana leaf. Nobody eats alone tonight.</p>
+      <div class="tiles" id="dishes"></div><div class="leaf" id="leaf"><span style="opacity:.6">An empty leaf</span></div>
+      <p class="out" id="feastOut">0 / 4 dishes</p></article>
+    <article class="card" id="callCard"><h3>One call</h3><p>Someone in your family is far away this year. Pick who, and call.</p>
+      <div class="tiles" id="who"></div><div class="row"><button class="btn sm" id="callBtn">Call now</button></div><p class="out" id="callOut">Pick someone first.</p></article>
+    <article class="card" id="budget"><h3>Where the money goes</h3><p>Choose a festival budget and decide how much goes to someone who needs it. The costs are editable estimates.</p>
+      <div class="field"><label for="bTotal">Budget ₹</label><input id="bTotal" type="number" min="500" max="100000" step="500" value="5000"></div>
+      <div class="field"><label for="bGive" style="min-width:90px">Give away</label><input class="range" id="bGive" type="range" min="0" max="100" value="20"><span id="bGiveN">20%</span></div>
+      <div class="field"><label for="mealCost">One meal ₹</label><input id="mealCost" type="number" min="10" value="60"><label for="kitCost">School kit ₹</label><input id="kitCost" type="number" min="50" value="500"></div>
+      <p class="out" id="bOut"></p><div class="meter"><i id="bBar"></i></div></article>
+    <article class="card" id="boxCard"><span class="done-tag">Ember lit</span>
+      <h3>The Diwali box</h3><p>Pack a box for a family or a children's home. Four things or more.</p>
+      <div class="tiles" id="boxTiles"></div><p class="out" id="boxOut">0 items packed</p></article>
+  </div>
+  <p class="bignote">Homemade sweets taste better when someone else is eating them with you.</p>
+</div></section>
+
+<section id="companions" class="solid" data-ch="companions"><div class="in">
+  <p class="eyebrow">Save our companions · நம் தோழர்கள்</p>
+  <h2 class="h2">They cannot ask<br>us to stop.</h2>
+  <p class="lede">Dogs, cats, birds and cows hear far more sharply than we do. A sudden bang that is fun for us can be terrifying for them. Build a calm corner and see what helps.</p>
+  <div class="grid g2">
+    <article class="card"><h3>Who are you protecting?</h3>
+      <div class="chips" id="aniChips" role="group" aria-label="Animal"></div>
+      <h4 id="aniTitle" style="font-family:var(--f-display);font-size:1.5rem;margin-top:1rem;text-transform:uppercase"></h4>
+      <ul id="aniTips" style="padding-left:1.1rem;margin:.5rem 0 0"></ul></article>
+    <article class="card" id="roomCard"><span class="done-tag">Ember lit</span><h3>Build a calm corner</h3><p>Tap what you would set up before the evening starts.</p>
+      <div class="rooms" id="room"><div class="floor"></div><div class="pet" id="pet">🐕</div></div>
+      <div class="tiles" id="roomTiles"></div>
+      <div class="mrow"><span>Calm</span><b id="calmN">0%</b></div><div class="meter"><i id="calmFill"></i></div></article>
+  </div>
+</div></section>
+
+<section id="responsible" class="solid" data-ch="responsible"><div class="in">
+  <p class="eyebrow">Celebrate responsibly · பொறுப்பான கொண்டாட்டம்</p>
+  <h2 class="h2">Enjoy it.<br>Keep everyone safe.</h2>
+  <p class="lede">This is not a call to ban crackers. It is a call to use them well. Celebrate Diwali without harming yourself, your neighbours, animals or the environment.</p>
+  <div class="grid g2">
+    <article class="card"><h3>Find the safe spot</h3><p>Drag the person around the cracker. Light it at arm's length, then move well back.</p>
+      <canvas class="sd" id="sdCanvas" width="560" height="340" aria-label="Safe distance trainer. Drag the person."></canvas><p class="out" id="sdOut">Drag the person.</p></article>
+    <article class="card"><h3>How long does it last?</h3><p>Tap each one to see how long the enjoyment lasts.</p>
+      <div class="tiles" id="lastTiles"></div><div class="meter"><i id="lastBar"></i></div><p class="out" id="lastOut">Pick one.</p></article>
+    <article class="card"><h3>The air we share</h3><p>Move the slider to burn more at once in one street and watch the haze.</p>
+      <div class="hazebox"><i id="haze"></i></div><input class="range" id="hazeRange" type="range" min="0" max="100" value="0" aria-label="Amount burnt"><p class="out" id="hazeOut">Clear evening.</p></article>
+    <article class="card"><h3>If something goes wrong</h3>
+      <ul style="padding-left:1.1rem;margin:.4rem 0 0"><li>Burn: cool running water for several minutes, then see a doctor.</li><li>Dud cracker: never relight it. Soak it in water.</li><li>Eyes: do not rub. Rinse and get medical help.</li><li>Keep a bucket of water or sand nearby, always.</li></ul></article>
+  </div>
+  <article class="card" id="pledgeCard" style="margin-top:16px"><span class="done-tag">Ember lit</span>
+    <h3>My Diwali pledge</h3><div id="pledge"></div>
+    <div class="row" style="margin-top:1rem"><button class="btn sm" id="copyPledge">Copy my pledge</button><span class="out" id="pledgeOut">0 / 7 checked</span></div></article>
+</div></section>
+
+<section id="creator" class="solid creator" data-ch="creator"><div class="in cgrid">
+  <div class="idcard" id="idcard"><div class="face">
+    <div class="avatar" aria-hidden="true">K</div>
+    <h3>Kevin Lazarus</h3>
+    <p class="role">Tech Enthusiast | Creative Thinker | Stranger Things Fan</p>
+    <div class="proj">Project<b>Pattasu Vedikkum · DigiDiwali 2026</b></div>
+    <div class="proj">Creative concept &amp; direction<b>Kevin Lazarus</b></div>
+  </div></div>
+  <div>
+    <p class="eyebrow">The creator</p>
+    <h2 class="h2">One idea.<br>A whole village.</h2>
+    <p class="lede">I wanted a Diwali site that made you feel something instead of buying something. Pick an interest and see where it went.</p>
+    <div class="chips" id="cChips" role="group" aria-label="Interests"></div>
+    <div class="cpanel" id="cPanel" aria-live="polite"><h4>Technology</h4><p>Pick a chip to read how it shaped this project.</p></div>
+  </div>
+</div></section>
+
+<section id="finale" data-ch="finale"><div class="in">
+  <div class="glass fin-card" id="finCard">
+    <p class="eyebrow">Finale · Dawn</p>
+    <h3 id="finTitle">Close the gate.</h3>
+    <p id="finText">The gate answers to light. Collect all five embers by finishing the village warmth, the shared table, the Diwali box, the calm corner and your pledge.</p>
+    <div class="mrow"><span>Light embers</span><b id="emberN">0 / 5</b></div><div class="meter"><i id="emberFill"></i></div>
+    <div class="chips" id="emberList"></div>
+    <div class="row" style="margin-top:1rem"><button class="btn" id="sealBtn" disabled>Close the gate</button><button class="btn ghost sm" id="sealAnyway">Skip to the ending</button></div>
+  </div>
+  <div class="final" id="final">
+    <h2>Happy Diwali 2026!</h2>
+    <p class="wish">Clear bad energy. Leave negativity behind. Welcome positive vibes, happiness, prosperity, good income, new opportunities and blessings.</p>
+    <p class="q">“Let the darkness disappear. Let happiness illuminate every home.”</p>
+    <p class="q">“Celebrate together. Care for everyone. Spread happiness.”</p>
+    <p class="sig">— Kevin Lazarus</p>
+    <div class="row" style="margin-top:1.4rem"><button class="btn ghost sm" id="againBtn">Walk the story again</button><button class="btn ghost sm" id="shareBtn">Copy the message</button></div>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="in">
+  <div><div class="big">Pattasu Vedikkum · DigiDiwali 2026</div><p>An interactive Diwali story about celebrating together and caring for everyone. No shop, no cart, no real fire.</p>
+    <p class="fcred">Creative concept &amp; direction · Kevin Lazarus<br>Tech Enthusiast | Creative Thinker | Stranger Things Fan</p>
+    <p style="margin-top:.8rem">An original story inspired by the mood of Stranger Things. Not affiliated with or endorsed by its creators. Built with Claude.</p></div>
+  <nav aria-label="Footer"><a href="#home">Home</a><a href="#village">Village</a><a href="#upside">Upside Down</a><a href="#lab">Crackers</a><a href="#digi">DigiDiwali</a><a href="#companions">Companions</a><a href="#responsible">Responsibly</a><a href="#creator">Creator</a><a href="#finale">Finale</a></nav>
+</div></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>window.THREE||document.write('<script src="vendor/three.min.js"><\/script>')</script>
+<script src="js/core.js"></script>
+<script src="js/env.js"></script>
+<script src="js/env2.js"></script>
+<script src="js/people.js"></script>
+<script src="js/world.js"></script>
+<script src="js/world-story.js"></script>
+<script src="js/lab.js"></script>
+<script src="js/story.js"></script>
+<script src="js/sections.js"></script>
+</body>
+</html>

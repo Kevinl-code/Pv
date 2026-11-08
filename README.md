@@ -17,7 +17,7 @@ Three.js (r128) loads from cdnjs. For offline use, put `three.min.js` in `vendor
 `index.html` · `css/style.css` · `js/` (core: audio + particles, env/env2: village + gate, people: villagers, world + world-story: scene and story, lab: 7-cracker lab, story + sections: navigation and interactions) · `assets/favicon.svg`
 
 ## Your photo
-Save a square-ish photo as `assets/kevin.jpg` (about 600x600). The Creator card shows it automatically. Until then it shows an initial and an "Add my photo" button for a local preview.
+Save your photo as `assets/kevin.jpg` (square, about 600x600, lowercase name). The Creator card shows it directly.
 
 ## Notes
 - All sound is synthesized live (Web Audio). Sound starts only after the first click.

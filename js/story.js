@@ -1,6 +1,7 @@
 /* Navigation, chapters, embers, intro/finale wiring. */
 (function(){
 'use strict';
+
 const {$,clamp,Snd,reduce}=PV;
 const W=PV.World,body=document.body,$$=s=>[].slice.call(document.querySelectorAll(s));
 const GL=!!(W&&!W.noGL&&W.ready);
@@ -10,11 +11,13 @@ body.classList.add('lock');
 const EMB=[['warmth','Village warmth'],['feast','Shared table'],['give','Diwali box'],['animals','Calm corner'],['pledge','Pledge']];
 const got=new Set();
 const hud=$$('#embers i'),emberList=$('#emberList');
-EMB.forEach(e=>{const c=document.createElement('span');c.className='chip';c.id='ec-'+e[0];c.textContent=e[1];emberList.appendChild(c);});
+const GO={warmth:'#village',feast:'#feast',give:'#boxCard',animals:'#roomCard',pledge:'#pledgeCard'};
+EMB.forEach(e=>{const c=document.createElement('button');c.type='button';c.className='chip';c.id='ec-'+e[0];c.textContent='Light: '+e[1];c.title='Go to '+e[1];
+  c.addEventListener('click',()=>{Snd.unlock();Snd.click();const t=document.querySelector(GO[e[0]]);if(t)t.scrollIntoView({behavior:reduce?'auto':'smooth',block:e[0]==='warmth'?'start':'center'});});emberList.appendChild(c);});
 function ember(id){
   if(got.has(id))return;got.add(id);
   const i=EMB.findIndex(e=>e[0]===id);if(hud[got.size-1])hud[got.size-1].classList.add('lit');
-  $('#ec-'+id).classList.add('on');$('#ec-'+id).textContent='✓ '+EMB[i][1];
+  $('#ec-'+id).classList.add('on');$('#ec-'+id).textContent='✓ '+EMB[i][1];$('#ec-'+id).setAttribute('aria-pressed','true');
   $('#emberN').textContent=got.size+' / 5';$('#emberFill').style.width=(got.size*20)+'%';
   $('#sealBtn').disabled=got.size<5;
   Snd.ember();

@@ -118,6 +118,13 @@ const picked=box=>[].filter.call(box.children,c=>c.classList.contains('on')).map
 
 /* ---- creator ---- */
 (function(){
+  const img=$('#avImg'),sp=$('#avatar span'),btn=$('#avBtn'),file=$('#avFile');
+  function setPhoto(src){img.src=src;}
+  img.addEventListener('load',()=>{img.hidden=false;sp.style.visibility='hidden';});
+  img.addEventListener('error',()=>{img.hidden=true;sp.style.visibility='';btn.hidden=false;});
+  try{const s=localStorage.getItem('pv-photo');if(s)setPhoto(s);}catch(e){}
+  file.addEventListener('change',()=>{const f=file.files[0];if(!f)return;const r=new FileReader();
+    r.onload=()=>{const im=new Image();im.onload=()=>{const c=document.createElement('canvas');c.width=c.height=360;const x=c.getContext('2d'),m=Math.min(im.width,im.height);x.drawImage(im,(im.width-m)/2,(im.height-m)/2,m,m,0,0,360,360);const u=c.toDataURL('image/jpeg',.85);setPhoto(u);try{localStorage.setItem('pv-photo',u);}catch(e){}};im.src=r.result;};r.readAsDataURL(f);});
   const face=$('#idcard .face'),card=$('#idcard');
   if(!reduce){card.addEventListener('pointermove',e=>{const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;face.style.transform='rotateY('+(x*14)+'deg) rotateX('+(-y*14)+'deg)';});
     card.addEventListener('pointerleave',()=>{face.style.transform='';});}
